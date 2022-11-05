@@ -1,0 +1,101 @@
+<div>
+  <div>
+    <h1>
+      Task #<%= @the_task.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/tasks">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_task/<%= @the_task.id %>">
+          Delete task
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Task
+      </dt>
+      <dd>
+        <%= @the_task.task %>
+      </dd>
+
+      <dt>
+        Status
+      </dt>
+      <dd>
+        <%= @the_task.status %>
+      </dd>
+
+      <dt>
+        User
+      </dt>
+      <dd>
+        <%= @the_task.user_id %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_task.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_task.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit task
+    </h2>
+
+    <form action="/modify_task/<%= @the_task.id %>"  method="post" >
+      <div>
+        <label for="task_box">
+          Task
+        </label>
+
+        <textarea id="task_box" name="query_task"><%= @the_task.task %></textarea>
+      </div>
+
+      <div>
+        <label for="status_box">
+          Status
+        </label>
+
+        <input type="text" id="status_box" name="query_status" value="<%= @the_task.status %>">
+      </div>
+
+      <div>
+        <label for="user_id_box">
+          User
+        </label>
+
+        <input type="text" id="user_id_box" name="query_user_id" value="<%= @the_task.user_id %>">
+      </div>
+
+      <button>
+        Update task
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
