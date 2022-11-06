@@ -21,38 +21,66 @@
   </div>
 </div>
 
+
 <div class="next_up">
 <h2>Next Up</h2>
 <% @list_of_tasks.each do |task| %>
-
-<% if task == "Next Up"%>
+<% if task.status == "next_up"%>
 <ul>
   <li>
     <div><%= task.task %></div>
-    <small>About <%= time_ago_in_words(task.created_at) %> ago <a href="/delete_task/<%= task.id %>">Delete</a></small>
+    <small>Added <%= time_ago_in_words(task.created_at) %> ago 
+    <a href="/delete_task/<%= task.id %>">Delete</a>
+    </small>
 
-    <form action="/modify_task/<%= task.id %>" method = "post"><input type="hidden" name="query_status" value="in_progress"><button>Move to In Progress</button></form>
+    <form action="/modify_task/<%= task.id %>" method = "post"><input type="hidden" name="query_status" value="in_progress">
+    <button>Move to In Progress</button>
+    </form>
+    <% end %>
   </li>
 </ul>
-<% end %>
+      <% end %>
 </div>
+
 
 <div class="in_progress">
   <h2>In Progress</h2>
-
+  <% @list_of_tasks.each do |task| %>
+  <% if task.status == "in_progress"%>
   <ul>
     <li>
-    <div>
-      <%#= %>
-    </div>
+      <div>
+        <%= task.task %>
+      </div>
     <small>
-      Started <%= time_ago_in_words(task.created_at) %> ago
+      Started <%= time_ago_in_words(task.updated_at) %> ago
       <a href="/delete_task/<%= task.id %>">Delete</a>
     </small>
     <form action="/modify_task/<%= task.id %>" method="post">
     <input type="hidden" name="query_status" value="done">
+    <button>Move to Done</button>
     </form>
     </li>
+      <% end %>
   </ul>
+    <% end %>
 </div>
-<% end %>
+
+<div class= "done">
+ <h2>Done</h2>
+ <% @list_of_tasks.each do |task| %>
+ <% if task.status == "done"%>
+  <ul>
+    <li>
+      <div>
+      <%= task.task %>
+      </div>
+      <small>
+        Completed at <%= task.updated_at.strftime("%l:%M%P on %d-%b-%Y") %>
+        <a href="/delete_task/<%= task.id %>">Delete</a>
+      </small>
+    </li>
+    <% end %>
+  </ul>
+  <% end %>
+</div>

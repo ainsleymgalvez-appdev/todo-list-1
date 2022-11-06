@@ -12,3 +12,16 @@
  *
  *= require_self
  */
+
+ .next_up {
+    color: darkorange;
+ }
+
+ .in_progress {
+    color: darkgreen;
+ }
+
+ .done {
+    color: grey; 
+
+ }
